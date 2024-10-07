@@ -1,0 +1,4 @@
+SpeechRecognition
+PyAudio
+cmudict
+python-Levenshtein
