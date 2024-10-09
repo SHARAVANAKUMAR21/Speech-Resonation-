@@ -12,5 +12,5 @@ def speech_to_text():
             return spoken_text
         except sr.UnknownValueError:
             return "Sorry, I could not understand the audio."
-        except sr.RequestError:
-            return "Could not request results from Google Speech Recognition service."
+        except sr.RequestError as e:
+            return f"Could not request results from Google Speech Recognition service; {e}"
