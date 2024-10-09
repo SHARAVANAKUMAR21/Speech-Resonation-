@@ -9,10 +9,20 @@ st.title("Pronunciation Assessment System")
 correct_sentence = st.text_input("Enter the correct sentence:", "This is India")
 
 # Button to start speech recognition
-if st.button("Start Speaking"):
-    spoken_text = speech_to_text()
-    st.write(f"You said: {spoken_text}")
-    
-    # Compare spoken text with the correct sentence
-    is_correct, feedback = phoneme_compare(spoken_text, correct_sentence)
-    st.write(feedback)
+if correct_sentence.strip() == "":
+    st.error("Please enter a valid correct sentence.")
+else:
+    if st.button("Start Speaking"):
+        with st.spinner('Listening...'):
+            spoken_text = speech_to_text()
+            st.write(f"You said: {spoken_text}")
+            
+            # Compare spoken text with the correct sentence
+            is_correct, feedback = phoneme_compare(spoken_text, correct_sentence)
+            
+            if is_correct:
+                st.success("Pronunciation is correct! 🎉")
+            else:
+                st.error("Pronunciation needs improvement. ❌")
+                
+            st.write(feedback)
